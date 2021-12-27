@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("../database/db");
 const router = express.Router();
 
+//create-room route
 router.post("/create-room", (req, res) => {
   const createDoc = async () => {
     try {

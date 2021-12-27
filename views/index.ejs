@@ -85,6 +85,8 @@
   </head>
   <body>
     <h1 class="head">Chat app</h1>
+
+    <!--create room-->
     <form
       action="/create-room"
       method="POST"
@@ -93,7 +95,9 @@
       <input type="text" class="name" name="name" />
       <button type="submit" class="cr">Create Room</button>
     </form>
+
     <% roomName.forEach(function (e) {%>
+    <!--room name, buttons(join, delete)-->
     <div class="room">
       <p class="room-name"><%= e.roomName %></p>
       <div class="btns">
