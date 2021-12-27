@@ -81,6 +81,11 @@
         color: white;
         background-color: red;
       }
+
+      .room button:hover {
+        background-color: white;
+        color: red;
+      }
     </style>
   </head>
   <body>
@@ -101,9 +106,9 @@
     <div class="room">
       <p class="room-name"><%= e.roomName %></p>
       <div class="btns">
-        <a href="/chat/<%=e.roomName %>">Join</a>
+        <a href="/chat/<%=e.slug %>">Join Room</a>
         <form action="/<%= e.id %>?_method=DELETE" method="POST">
-          <button type="submit" href="/<%= e.id %>">Delete</button>
+          <button type="submit" href="/<%= e.id %>" class="btn">Delete</button>
         </form>
       </div>
     </div>

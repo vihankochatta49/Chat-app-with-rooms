@@ -57,8 +57,8 @@ app.get("/", async (req, res) => {
 });
 
 //chat route
-app.get("/chat/:roomName", async (req, res) => {
-  const blogs = await db.findOne({ roomName: req.params.roomName });
+app.get("/chat/:slug", async (req, res) => {
+  const blogs = await db.findOne({ slug: req.params.slug });
   res.render("chat", { blogs });
 });
 
