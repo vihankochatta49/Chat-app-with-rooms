@@ -11,10 +11,9 @@ router.post("/create-room", (req, res) => {
       });
 
       const roomName = await db.insertMany([chatRoom]);
-      console.log(roomName);
       res.redirect("/");
     } catch {
-      (err) => console.log(err);
+      (err) => console.error(err);
     }
   };
   createDoc();

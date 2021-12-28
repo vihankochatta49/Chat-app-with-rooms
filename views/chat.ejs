@@ -17,11 +17,6 @@
   }
 
   body {
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     font-family: sans-serif;
   }
 
@@ -29,14 +24,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    border-bottom: 2px solid;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    border-bottom: 2px solid #f1f1f1;
   }
 
   .btn {
     font-size: 1.5em;
     padding: 5px 10px;
-    border: 2px solid;
+    border: 2px solid white;
+    background-color: white;
     border-radius: 8px;
   }
 
@@ -50,6 +47,7 @@
     color: #000;
     font-size: 2rem;
     text-align: left;
+    padding: 10px;
   }
 
   .blank {
@@ -63,7 +61,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40%;
+    width: 100%;
     margin-top: 15px;
   }
 
@@ -167,8 +165,8 @@
   }
 
   @media screen and (max-width: 800px) {
-    body {
-      margin: 0px 10px;
+    .chat-cont {
+      width: 100% !important;
     }
 
     .top-bar {
@@ -193,13 +191,15 @@
       flex-direction: column;
       width: 50%;
       max-width: 100%;
-      border: 2px solid;
+      border: 2px solid white;
       border-radius: 20px;
       height: 80%;
+      box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
     "
+    class="chat-cont"
   >
     <div class="top-bar">
-      <h1 class="logo">Comments</h1>
+      <h1 class="logo"><%= blogs.roomName %></h1>
       <button class="btn">
         <a class="anchor" href="/"><i class="fas fa-home"></i></a></button
       ><!--Home button-->

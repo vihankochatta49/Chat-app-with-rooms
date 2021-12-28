@@ -22,35 +22,48 @@
 
       .head {
         padding: 10px;
-        border-bottom: 2px solid black;
+        border-bottom: 1px solid rgb(0 0 0 / 8%);
+        font-size: 70px;
+        font-family: monospace;
+        font-weight: 500;
+        box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
       }
 
       .name {
-        border: 1px solid;
+        border: 1px solid #f1f1f1;
         border-right: none;
         font-size: 20px;
         padding: 0px 10px;
         outline: none;
+        box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+        border-bottom-left-radius: 7px;
+        border-top-left-radius: 7px;
       }
 
       .cr {
-        border: 1px solid black;
+        border: 1px solid #f1f1f1;
         border-left: none;
-        background-color: #4a4aef;
-        color: white;
+        color: #4a4aef;
+        background-color: white;
         padding: 10px;
         font-size: 20px;
+        border-bottom-right-radius: 7px;
+        border-top-right-radius: 7px;
+        box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
       }
 
       .cr:hover {
         background-color: rgb(8, 128, 8);
+        color: white;
       }
 
       .room {
         display: flex;
         justify-content: space-between;
-        border: 1px solid black;
-        margin: 10px;
+        border: 1px solid white;
+        margin: 30px 5%;
+        box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+        border-radius: 7px;
       }
 
       .btns {
@@ -64,27 +77,30 @@
 
       .room a {
         font-size: 20px;
-        color: white;
         text-decoration: none;
         padding: 10px;
-        background-color: #4a4aef;
+        color: #4a4aef;
+        border-right: 1px solid #f7f7f7;
       }
 
       .room a:hover {
+        color: white;
         background-color: rgb(8, 128, 8);
       }
 
       .room button {
+        border-bottom-right-radius: 7px;
+        border-top-right-radius: 7px;
         border: none;
         font-size: 20px;
         padding: 10px;
-        color: white;
-        background-color: red;
+        background-color: white;
+        color: red;
       }
 
       .room button:hover {
-        background-color: white;
-        color: red;
+        color: white;
+        background-color: red;
       }
     </style>
   </head>
@@ -95,9 +111,15 @@
     <form
       action="/create-room"
       method="POST"
-      style="margin: 25px 10px; display: flex"
+      style="margin: 40px 2%; display: flex"
     >
-      <input type="text" class="name" name="name" />
+      <input
+        type="text"
+        class="name"
+        name="name"
+        placeholder="Write here..."
+        required
+      />
       <button type="submit" class="cr">Create Room</button>
     </form>
 
