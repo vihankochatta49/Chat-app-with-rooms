@@ -105,35 +105,43 @@
     </style>
   </head>
   <body>
-    <h1 class="head">Chat app</h1>
+    <header>
+      <h1 class="head">Chat app</h1>
+    </header>
 
-    <!--create room-->
-    <form
-      action="/create-room"
-      method="POST"
-      style="margin: 40px 2%; display: flex"
-    >
-      <input
-        type="text"
-        class="name"
-        name="name"
-        placeholder="Write here..."
-        required
-      />
-      <button type="submit" class="cr">Create Room</button>
-    </form>
+    <section>
+      <!--create room-->
+      <form
+        action="/create-room"
+        method="POST"
+        style="margin: 40px 2%; display: flex"
+      >
+        <input
+          type="text"
+          class="name"
+          name="name"
+          placeholder="Write here..."
+          required
+        />
+        <button type="submit" class="cr">Create Room</button>
+      </form>
+    </section>
 
-    <% roomName.forEach(function (e) {%>
-    <!--room name, buttons(join, delete)-->
-    <div class="room">
-      <p class="room-name"><%= e.roomName %></p>
-      <div class="btns">
-        <a href="/chat/<%=e.slug %>">Join Room</a>
-        <form action="/<%= e.id %>?_method=DELETE" method="POST">
-          <button type="submit" href="/<%= e.id %>" class="btn">Delete</button>
-        </form>
+    <section>
+      <% roomName.forEach(function (e) {%>
+      <!--room name, buttons(join, delete)-->
+      <div class="room">
+        <p class="room-name"><%= e.roomName %></p>
+        <div class="btns">
+          <a href="/chat/<%=e.slug %>">Join Room</a>
+          <form action="/<%= e.id %>?_method=DELETE" method="POST">
+            <button type="submit" href="/<%= e.id %>" class="btn">
+              Delete
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
-    <%})%>
+      <%})%>
+    </section>
   </body>
 </html>
