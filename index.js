@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const db = require("./database/db");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //view engine
 app.set("view engine", "ejs");
