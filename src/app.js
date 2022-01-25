@@ -16,7 +16,7 @@ app.use(methodOverride("_method"));
 
 //connecting to db
 mongoose
-  .connect("mongodb://localhost:27017/rooms")
+  .connect("mongodb+srv://vihan:Vihank%40123@cluster0.veizy.mongodb.net/test")
   .then(() => console.log("Connection successful..."))
   .catch((err) => console.log(err));
 
