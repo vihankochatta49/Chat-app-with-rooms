@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
-const db = require("./database/db");
+const db = require("../database/db");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
 });
 
 //routes
-app.use("/", require("./routes/router"));
+app.use("/", require("../routes/router"));
 
 //home route
 app.get("/", async (req, res) => {
