@@ -16,7 +16,10 @@ app.use(methodOverride("_method"));
 
 //connecting to db
 mongoose
-  .connect("mongodb+srv://vihan:Vihank%40123@cluster0.veizy.mongodb.net/test")
+  .connect(
+    process.env.MONGODB_URI ||
+      "mongodb+srv://vihan:Vihank%40123@cluster0.veizy.mongodb.net/test"
+  )
   .then(() => console.log("Connection successful..."))
   .catch((err) => console.log(err));
 
