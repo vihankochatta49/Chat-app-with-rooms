@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
 
 schema.pre("validate", function (next) {
   if (this.roomName) {
-    this.slug = slugify(this.roomName).toLowerCase();
+    this.slug = slugify(this.roomName).toLowerCase(); //slugify roomname
   }
   next();
 });

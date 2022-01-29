@@ -185,15 +185,18 @@
   </head>
   <body>
     <div class="chat-cont">
+      <!-- room name -->
       <div class="top-bar">
         <h1 class="logo"><%= blogs.roomName %></h1>
         <button class="btn">
           <a class="anchor" href="/"><i class="fas fa-home"></i></a></button
         ><!--Home button-->
       </div>
+      <!-- chat section -->
       <div class="blank"></div>
     </div>
 
+    <!-- input message -->
     <div class="send">
       <form action="#" class="frm" autocomplete="off">
         <input
@@ -227,6 +230,7 @@
       const dropMessage = document.querySelector(".message"); //input tag
       const container = document.querySelector(".blank"); //message container
 
+      //for your messages
       const append = (e, message) => {
         const txtDiv = document.createElement("div");
         txtDiv.classList.add("txt", "arrow-left");
@@ -241,6 +245,7 @@
         container.append(txtDiv);
       };
 
+      //for other messages
       const appendone = (e, message) => {
         const txtDiv = document.createElement("div");
         txtDiv.classList.add("txtr", "arrow-right");
@@ -255,21 +260,26 @@
         container.append(txtDiv);
       };
 
+      //getting user name
       const name = prompt("Enter your name to get in:", "Unknown");
       socket.emit("new-user-joined", roomName, name);
 
+      //user joined
       socket.on("user-joined", (name) => {
         appendone("Server", `${name} joined the party!`);
       });
 
+      //message recieved
       socket.on("recieve", (data) => {
         appendone(`${data.name}`, `${data.message}`);
       });
 
+      //user left
       socket.on("left", (name) => {
         appendone("Server", `${name} flyied away...`);
       });
 
+      //message send by yourself
       drop.addEventListener("submit", (e) => {
         e.preventDefault();
         const mass = dropMessage.value;

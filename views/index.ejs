@@ -148,9 +148,10 @@
 
     <section>
       <% roomName.forEach(function (e) {%>
-      <!--room name, buttons(join, delete)-->
+      <!--room name-->
       <div class="room">
         <p class="room-name"><%= e.roomName %></p>
+        <!-- buttons -->
         <div class="btns">
           <a href="/chat/<%=e.slug %>">Join Room</a>
           <form action="/<%= e.id %>?_method=DELETE" method="POST">

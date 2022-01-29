@@ -4,9 +4,10 @@ const methodOverride = require("method-override");
 const db = require("../database/db");
 const app = express();
 const http = require("http").createServer(app);
-// const io = require('socket.io')(5006, { cors: { origin: '*', } });
-const io = require("socket.io")(http);
 const port = process.env.PORT || 3000;
+
+//socket connection
+const io = require("socket.io")(http);
 
 //view engine
 app.set("view engine", "ejs");
@@ -26,12 +27,12 @@ mongoose
   .then(() => console.log("Connection successful..."))
   .catch((err) => console.log(err));
 
-//socket connection
-// const io = require("socket.io")(4200, { cors: { origin: "*" } });
+// user object
 const users = {};
 
 //new user joined
 io.on("connection", (socket) => {
+  //new user joined
   socket.on("new-user-joined", (room, name) => {
     socket.join(room);
     users[socket.id] = name;
@@ -48,7 +49,7 @@ io.on("connection", (socket) => {
 
   //user disconnected
   socket.on("disconnect", (room) => {
-    socket.to(room).emit("left", users[socket.id]);
+    socket.broadcast.emit("left", users[socket.id]);
     delete users[socket.id];
   });
 });
