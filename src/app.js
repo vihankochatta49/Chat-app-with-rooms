@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const db = require("../database/db");
 const app = express();
+const http = require("http").createServer(app);
+// const io = require('socket.io')(5006, { cors: { origin: '*', } });
+const io = require("socket.io")(http);
 const port = process.env.PORT || 3000;
 
 //view engine
@@ -24,7 +27,7 @@ mongoose
   .catch((err) => console.log(err));
 
 //socket connection
-const io = require("socket.io")(4200, { cors: { origin: "*" } });
+// const io = require("socket.io")(4200, { cors: { origin: "*" } });
 const users = {};
 
 //new user joined
@@ -65,6 +68,6 @@ app.get("/chat/:slug", async (req, res) => {
   res.render("chat", { blogs });
 });
 
-app.listen(port, () =>
+http.listen(port, () =>
   console.log(`App listening at: http://localhost:${port}`)
 );
