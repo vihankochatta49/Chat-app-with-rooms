@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  //user disconnected
+  // user disconnected
   socket.on("disconnect", (room) => {
     socket.broadcast.emit("left", users[socket.id]);
     delete users[socket.id];
