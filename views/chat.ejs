@@ -265,6 +265,16 @@
       const name = prompt("Enter your name to get in:", "Unknown");
       socket.emit("new-user-joined", roomName, name);
 
+      socket.on("user-msg", (data) => {
+        if (data.length) {
+          data.forEach((message) => {
+            if (message.roomName == roomName) {
+              appendone(message.userName, message.userChat);
+            }
+          });
+        }
+      });
+
       //user joined
       socket.on("user-joined", (name) => {
         appendone("Server", `${name} joined the party!`);

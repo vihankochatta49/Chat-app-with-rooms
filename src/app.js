@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const db = require("../database/db");
+const chat = require("../database/chat");
 const app = express();
 const http = require("http").createServer(app);
 const port = process.env.PORT || 3000;
@@ -19,11 +20,9 @@ app.use(express.urlencoded({ extented: false }));
 app.use(methodOverride("_method"));
 
 //connecting to db
+// "mongodb+srv://vihan:Vihank%40123@cluster0.veizy.mongodb.net/test"
 mongoose
-  .connect(
-    process.env.MONGODB_URI ||
-      "mongodb+srv://vihan:Vihank%40123@cluster0.veizy.mongodb.net/test"
-  )
+  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/multiChat")
   .then(() => console.log("Connection successful..."))
   .catch((err) => console.log(err));
 
@@ -32,6 +31,9 @@ const users = {};
 
 //new user joined
 io.on("connection", (socket) => {
+  chat.find().then((data) => {
+    socket.emit("user-msg", data);
+  });
   //new user joined
   socket.on("new-user-joined", (room, name) => {
     socket.join(room);
@@ -41,9 +43,16 @@ io.on("connection", (socket) => {
 
   //user send message
   socket.on("send", (room, message) => {
-    socket.to(room).emit("recieve", {
-      message: message,
-      name: users[socket.id],
+    const userMsg = new chat({
+      roomName: room,
+      userName: users[socket.id],
+      userChat: message,
+    });
+    userMsg.save().then(() => {
+      socket.to(room).emit("recieve", {
+        message: message,
+        name: users[socket.id],
+      });
     });
   });
 
