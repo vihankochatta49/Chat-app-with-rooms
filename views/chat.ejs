@@ -265,6 +265,7 @@
       const name = prompt("Enter your name to get in:", "Unknown");
       socket.emit("new-user-joined", roomName, name);
 
+      //displaying database
       socket.on("user-msg", (data) => {
         if (data.length) {
           data.forEach((message) => {

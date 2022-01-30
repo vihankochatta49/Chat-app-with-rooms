@@ -20,7 +20,6 @@ app.use(express.urlencoded({ extented: false }));
 app.use(methodOverride("_method"));
 
 //connecting to db
-// "mongodb+srv://vihan:Vihank%40123@cluster0.veizy.mongodb.net/test"
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/multiChat")
   .then(() => console.log("Connection successful..."))
@@ -31,9 +30,11 @@ const users = {};
 
 //new user joined
 io.on("connection", (socket) => {
+  //fetching data
   chat.find().then((data) => {
     socket.emit("user-msg", data);
   });
+
   //new user joined
   socket.on("new-user-joined", (room, name) => {
     socket.join(room);
@@ -43,6 +44,7 @@ io.on("connection", (socket) => {
 
   //user send message
   socket.on("send", (room, message) => {
+    //saving message to db
     const userMsg = new chat({
       roomName: room,
       userName: users[socket.id],
